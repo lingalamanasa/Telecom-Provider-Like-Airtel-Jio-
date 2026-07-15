@@ -101,6 +101,52 @@
     .award-title { font-weight: 700; font-size: 0.95rem; }
     .award-org { font-size: 0.82rem; color: var(--text-muted); }
     .award-year { margin-left: auto; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; color: var(--secondary); }
+
+    /* ===== IMAGE STYLES ===== */
+    .img-overlay-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .img-overlay-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .img-overlay-card:hover img { transform: scale(1.04); }
+    .img-overlay-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    }
+    .img-overlay-badge {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      z-index: 2;
+      background: rgba(10,10,20,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .img-feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .img-feature-grid.reverse { direction: rtl; }
+    .img-feature-grid.reverse > * { direction: ltr; }
+
+    @media (max-width: 900px) {
+      .img-feature-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .img-feature-grid.reverse { direction: ltr; }
+    }
   </style>
 </head>
 <body>
@@ -153,14 +199,22 @@
   <div class="container">
     <div class="grid-2">
       <div class="reveal-left">
-        <div style="background:linear-gradient(135deg,rgba(138,43,226,0.15),rgba(0,212,255,0.08));border:1px solid var(--border);border-radius:var(--radius-xl);padding:3rem;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;text-align:center;">
-          <div style="font-size:5rem;">🏢</div>
-          <div style="font-family:'Orbitron',sans-serif;font-size:1.3rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Stackly HQ</div>
-          <div style="font-size:0.9rem;color:var(--text-muted);">Mumbai, India | Est. 2015</div>
-          <div style="display:flex;gap:2rem;">
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">10K+</div><div style="font-size:0.75rem;color:var(--text-muted);">Employees</div></div>
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">28</div><div style="font-size:0.75rem;color:var(--text-muted);">Offices</div></div>
-            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹5K Cr</div><div style="font-size:0.75rem;color:var(--text-muted);">Revenue</div></div>
+        <div class="img-overlay-card" style="height:420px; border-radius:var(--radius-xl);">
+          <img src="images/about-hq.webp" alt="Stackly HQ Mumbai" loading="lazy">
+          <div class="img-overlay-badge" style="bottom:unset; top:1rem; right:1rem; left:unset;">🏢 Stackly HQ — Mumbai</div>
+          <div style="position:absolute; bottom:1rem; left:1rem; right:1rem; display:flex; gap:1rem; z-index:2;">
+            <div style="flex:1; background:rgba(10,10,20,0.85); backdrop-filter:blur(10px); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
+              <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">10K+</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Employees</div>
+            </div>
+            <div style="flex:1; background:rgba(10,10,20,0.85); backdrop-filter:blur(10px); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
+              <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">28</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Offices</div>
+            </div>
+            <div style="flex:1; background:rgba(10,10,20,0.85); backdrop-filter:blur(10px); padding:1rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center;">
+              <div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₹5K Cr</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Revenue</div>
+            </div>
           </div>
         </div>
       </div>
@@ -205,6 +259,10 @@
       <div class="section-tag"><i class="bi bi-people-fill"></i> Leadership Team</div>
       <h2 class="section-title">Meet the Visionaries</h2>
       <p class="section-subtitle">Our leadership team brings decades of telecom, technology, and business expertise to drive Stackly's mission forward.</p>
+    </div>
+    <div class="img-overlay-card reveal" style="height:360px; margin-bottom:4rem;">
+      <img src="images/about-team.webp" alt="Stackly Engineering Team" loading="lazy">
+      <div class="img-overlay-badge" style="bottom:unset; top:1rem; right:1rem; left:unset;">👥 5,000+ World-Class Engineers</div>
     </div>
     <div class="grid-4 reveal">
       <div class="team-card">

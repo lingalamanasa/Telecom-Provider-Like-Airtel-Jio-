@@ -74,6 +74,39 @@
     .country-flag { font-size: 2rem; margin-bottom: 0.5rem; }
     .country-name { font-size: 0.85rem; font-weight: 600; }
     .country-rate { font-size: 0.78rem; color: var(--secondary); }
+
+    /* ===== IMAGE STYLES ===== */
+    .img-overlay-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .img-overlay-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .img-overlay-card:hover img { transform: scale(1.04); }
+    .img-overlay-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    }
+    .img-overlay-badge {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      z-index: 2;
+      background: rgba(10,10,20,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -204,6 +237,12 @@
       <h2 class="section-title">Blazing Fiber for Your Home & Office</h2>
       <p class="section-subtitle">True fiber-to-the-home connectivity with symmetric upload/download speeds. No throttling, no data caps.</p>
     </div>
+    
+    <div class="img-overlay-card reveal" style="height:380px; margin-bottom:4rem; border-radius:var(--radius-xl);">
+      <img src="images/service-fiber-router.webp" alt="Stackly Fiber WiFi Router" loading="lazy">
+      <div class="img-overlay-badge" style="bottom:unset; top:1rem; right:1rem; left:unset;">Wi-Fi 7 Ready Router Included</div>
+    </div>
+
     <div class="grid-2 reveal">
       <div class="service-section-card">
         <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem;">

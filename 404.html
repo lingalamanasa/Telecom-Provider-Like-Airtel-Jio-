@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | Stackly Telecom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      text-align: center;
+      overflow: hidden;
+    }
+    .error-wrapper { position: relative; z-index: 2; padding: 2rem; }
+    .error-orb-1 { position: fixed; top: 10%; left: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(138,43,226,0.12), transparent 65%); pointer-events: none; animation: float 10s ease-in-out infinite; }
+    .error-orb-2 { position: fixed; bottom: 10%; right: 5%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,212,255,0.08), transparent 65%); pointer-events: none; animation: float 12s ease-in-out infinite reverse; }
+
+    .error-logo { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin-bottom: 3rem; }
+    .error-404 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(6rem, 15vw, 12rem);
+      font-weight: 900;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      position: relative;
+      animation: glow-pulse 3s ease infinite;
+    }
+    .error-signal {
+      position: absolute;
+      top: 50%; right: -2rem;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      animation: float 4s ease-in-out infinite;
+    }
+    .error-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 3vw, 2rem); margin: 1.5rem 0 1rem; }
+    .error-desc { color: var(--text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .error-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .error-quick-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 25px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .quick-link:hover { border-color: var(--primary); color: var(--secondary); transform: translateY(-2px); }
+
+    .error-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 600px;
+      margin: 3rem auto 0;
+    }
+    .error-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 1rem;
+      transition: var(--transition);
+    }
+    .error-stat:hover { border-color: var(--primary); }
+    .error-stat-num { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .error-stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    @media (max-width: 600px) {
+      .error-grid { grid-template-columns: 1fr 1fr; }
+      .error-signal { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-orb-1"></div>
+  <div class="error-orb-2"></div>
+
+  <div class="error-wrapper">
+    <div class="error-logo">
+      <div class="logo-icon">📶</div>
+      <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+    </div>
+
+    <div style="position:relative;display:inline-block;">
+      <div class="error-404">404<span class="error-signal">📡</span></div>
+    </div>
+
+    <h1 class="error-title">Oops! Signal Lost.</h1>
+    <p class="error-desc">
+      We couldn't find the page you were looking for. It may have moved, been removed, or the link might be broken.
+      Don't worry — our network is still strong at 99.9% uptime! 🚀
+    </p>
+
+    <div class="error-buttons">
+      <a href="index.html" class="btn btn-primary btn-lg"><i class="bi bi-house-fill"></i> Back to Home</a>
+      <a href="contact.html" class="btn btn-outline btn-lg"><i class="bi bi-headset"></i> Contact Support</a>
+    </div>
+
+    <div class="error-quick-links">
+      <a href="services.html" class="quick-link"><i class="bi bi-grid"></i> Our Plans</a>
+      <a href="about.html" class="quick-link"><i class="bi bi-info-circle"></i> About Us</a>
+      <a href="blog.html" class="quick-link"><i class="bi bi-newspaper"></i> Blog</a>
+      <a href="login.html" class="quick-link"><i class="bi bi-person"></i> My Account</a>
+    </div>
+
+    <div class="error-grid">
+      <div class="error-stat"><div class="error-stat-num">50M+</div><div class="error-stat-label">Happy Subscribers</div></div>
+      <div class="error-stat"><div class="error-stat-num">99.9%</div><div class="error-stat-label">Network Uptime</div></div>
+      <div class="error-stat"><div class="error-stat-num">1200+</div><div class="error-stat-label">Cities Covered</div></div>
+    </div>
+  </div>
+</body>
+</html>

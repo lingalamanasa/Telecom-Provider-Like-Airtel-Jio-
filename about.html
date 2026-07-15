@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Stackly Telecom — India's most trusted 5G telecom company. Learn about our mission, team, milestones, and commitment to connecting India.">
+  <title>About Us | Stackly Telecom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .team-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-6px);
+      box-shadow: var(--glow-purple);
+    }
+    .team-avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: var(--glow-purple);
+    }
+    .team-name { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 0.3rem; }
+    .team-role { color: var(--secondary); font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .team-bio { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .team-social { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .team-social a { color: var(--text-muted); font-size: 1rem; transition: var(--transition); }
+    .team-social a:hover { color: var(--secondary); }
+
+    .milestone-grid { position: relative; }
+    .milestone-item {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .milestone-item::before {
+      content: '';
+      position: absolute;
+      left: 23px; top: 48px;
+      width: 2px;
+      height: calc(100% + 1rem);
+      background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+    .milestone-item:last-child::before { display: none; }
+    .milestone-dot {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      box-shadow: var(--glow-purple);
+    }
+    .milestone-year { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--secondary); margin-bottom: 0.3rem; letter-spacing: 1px; }
+    .milestone-title { font-weight: 700; margin-bottom: 0.3rem; }
+    .milestone-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .value-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .value-title { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .value-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .award-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+    .award-card:hover { border-color: var(--primary); transform: translateX(6px); }
+    .award-icon { font-size: 2rem; flex-shrink: 0; }
+    .award-title { font-weight: 700; font-size: 0.95rem; }
+    .award-org { font-size: 0.82rem; color: var(--text-muted); }
+    .award-year { margin-left: auto; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; color: var(--secondary); }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">📶</div>
+      <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="menu-close"><i class="bi bi-x"></i></button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+  <a href="login.html" class="btn btn-outline">Sign In</a><a href="register.html" class="btn btn-primary">Get Started</a>
+</div>
+
+<!-- ===== SECTION 1: HERO ===== -->
+<div class="page-hero-bg"></div>
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content reveal">
+      <div class="section-tag"><i class="bi bi-info-circle-fill"></i> About Stackly</div>
+      <h1 class="page-hero-title">Connecting India, One Signal at a Time</h1>
+      <p class="section-subtitle mb-0">We are on a mission to make reliable, high-speed connectivity accessible to every Indian, in every corner of the country.</p>
+      <div class="breadcrumb" style="margin-top:1rem;">
+        <a href="index.html">Home</a><i class="bi bi-chevron-right"></i><span>About Us</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: STORY ===== -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div class="reveal-left">
+        <div style="background:linear-gradient(135deg,rgba(138,43,226,0.15),rgba(0,212,255,0.08));border:1px solid var(--border);border-radius:var(--radius-xl);padding:3rem;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;text-align:center;">
+          <div style="font-size:5rem;">🏢</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:1.3rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Stackly HQ</div>
+          <div style="font-size:0.9rem;color:var(--text-muted);">Mumbai, India | Est. 2015</div>
+          <div style="display:flex;gap:2rem;">
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">10K+</div><div style="font-size:0.75rem;color:var(--text-muted);">Employees</div></div>
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">28</div><div style="font-size:0.75rem;color:var(--text-muted);">Offices</div></div>
+            <div style="text-align:center;"><div style="font-family:'Orbitron',sans-serif;font-size:1.5rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹5K Cr</div><div style="font-size:0.75rem;color:var(--text-muted);">Revenue</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="section-tag"><i class="bi bi-book-fill"></i> Our Story</div>
+        <h2 class="section-title" style="text-align:left;">Born to Bridge India's Digital Divide</h2>
+        <p style="color:var(--text-muted);margin-bottom:1.2rem;line-height:1.9;">Founded in 2015, Stackly Telecom started with a bold vision: provide every Indian with access to affordable, fast, and reliable internet. What began as a small startup in a Mumbai garage has grown into a telecom giant with 50 million subscribers.</p>
+        <p style="color:var(--text-muted);margin-bottom:1.2rem;line-height:1.9;">We were India's first operator to launch 5G Standalone (SA) technology in 2022, and since then, we have continuously pushed the boundaries of what's possible in mobile connectivity.</p>
+        <p style="color:var(--text-muted);margin-bottom:2rem;line-height:1.9;">Today, Stackly serves consumers, small businesses, and Fortune 500 enterprises — all with the same commitment to quality, transparency, and innovation.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="services.html" class="btn btn-primary"><i class="bi bi-grid"></i> Our Services</a>
+          <a href="contact.html" class="btn btn-outline"><i class="bi bi-telephone"></i> Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: VALUES ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-star-fill"></i> Core Values</div>
+      <h2 class="section-title">What We Stand For</h2>
+      <p class="section-subtitle">These principles guide every decision we make — from network architecture to customer service.</p>
+    </div>
+    <div class="values-grid reveal">
+      <div class="value-card"><div class="value-icon">⚡</div><div class="value-title">Speed First</div><p class="value-desc">We never compromise on performance. Our network is engineered for maximum speed at all times.</p></div>
+      <div class="value-card"><div class="value-icon">🔒</div><div class="value-title">Privacy & Security</div><p class="value-desc">Your data is sacred. We use military-grade encryption and never sell user data to third parties.</p></div>
+      <div class="value-card"><div class="value-icon">🌍</div><div class="value-title">Inclusive Access</div><p class="value-desc">Connectivity is a right, not a privilege. We actively expand to rural and underserved areas.</p></div>
+      <div class="value-card"><div class="value-icon">🌱</div><div class="value-title">Sustainability</div><p class="value-desc">Committed to 100% renewable energy for all network operations by 2027.</p></div>
+      <div class="value-card"><div class="value-icon">💡</div><div class="value-title">Innovation</div><p class="value-desc">We invest 12% of revenue in R&D — constantly developing the network technologies of tomorrow.</p></div>
+      <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">Customer First</div><p class="value-desc">Every product decision starts with the customer. We listen, adapt, and deliver what matters most.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: TEAM ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-people-fill"></i> Leadership Team</div>
+      <h2 class="section-title">Meet the Visionaries</h2>
+      <p class="section-subtitle">Our leadership team brings decades of telecom, technology, and business expertise to drive Stackly's mission forward.</p>
+    </div>
+    <div class="grid-4 reveal">
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(138,43,226,0.3),rgba(0,212,255,0.2));">👨‍💼</div>
+        <div class="team-name">Arjun Mehta</div>
+        <div class="team-role">Founder & CEO</div>
+        <p class="team-bio">Former Ericsson executive with 20+ years in telecom. IIT Bombay alumnus.</p>
+        <div class="team-social"><a href="404.html"><i class="bi bi-linkedin"></i></a><a href="404.html"><i class="bi bi-twitter-x"></i></a></div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(0,200,100,0.2));">👩‍💼</div>
+        <div class="team-name">Sneha Rao</div>
+        <div class="team-role">Co-Founder & CTO</div>
+        <p class="team-bio">PhD in Wireless Communications from IISc. Holds 14 technology patents.</p>
+        <div class="team-social"><a href="404.html"><i class="bi bi-linkedin"></i></a><a href="404.html"><i class="bi bi-github"></i></a></div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(255,107,53,0.3),rgba(255,215,0,0.2));">👨‍💻</div>
+        <div class="team-name">Vikram Singh</div>
+        <div class="team-role">Chief Revenue Officer</div>
+        <p class="team-bio">Built Stackly's subscriber base from 1M to 50M. Expert in growth strategy.</p>
+        <div class="team-social"><a href="404.html"><i class="bi bi-linkedin"></i></a><a href="404.html"><i class="bi bi-twitter-x"></i></a></div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(0,200,100,0.3),rgba(138,43,226,0.2));">👩‍🔬</div>
+        <div class="team-name">Dr. Anita Patel</div>
+        <div class="team-role">Chief Network Officer</div>
+        <p class="team-bio">Oversaw Stackly's 5G SA rollout across 500+ cities in under 18 months.</p>
+        <div class="team-social"><a href="404.html"><i class="bi bi-linkedin"></i></a><a href="404.html"><i class="bi bi-twitter-x"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: MILESTONES ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-flag-fill"></i> Our Journey</div>
+      <h2 class="section-title">10 Years of Milestones</h2>
+      <p class="section-subtitle">From a garage startup to India's leading 5G network — here's how we got here.</p>
+    </div>
+    <div class="grid-2 reveal">
+      <div class="milestone-grid">
+        <div class="milestone-item">
+          <div class="milestone-dot">🚀</div>
+          <div><div class="milestone-year">2015</div><div class="milestone-title">Stackly Founded</div><p class="milestone-desc">Arjun Mehta and Sneha Rao founded Stackly in Mumbai with a ₹50 Cr seed round from top VCs.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">📡</div>
+          <div><div class="milestone-year">2017</div><div class="milestone-title">4G Network Launch</div><p class="milestone-desc">Launched 4G LTE across 50 cities, crossing 1 million subscribers in the first year.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">💰</div>
+          <div><div class="milestone-year">2019</div><div class="milestone-title">IPO & Expansion</div><p class="milestone-desc">Listed on BSE & NSE, raising ₹2,500 Cr. Expanded to 500 cities with fiber broadband launch.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">⚡</div>
+          <div><div class="milestone-year">2022</div><div class="milestone-title">India's First 5G SA</div><p class="milestone-desc">Became the first Indian telecom to launch Standalone 5G — 10M subscribers crossed.</p></div>
+        </div>
+      </div>
+      <div class="milestone-grid">
+        <div class="milestone-item">
+          <div class="milestone-dot">🌐</div>
+          <div><div class="milestone-year">2023</div><div class="milestone-title">Enterprise Division</div><p class="milestone-desc">Launched Stackly Enterprise with SD-WAN, IoT, and dedicated leased lines for corporates.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">🏆</div>
+          <div><div class="milestone-year">2024</div><div class="milestone-title">TRAI #1 Ranking</div><p class="milestone-desc">Ranked India's fastest and most reliable network by TRAI for the second consecutive year.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">🌍</div>
+          <div><div class="milestone-year">2024</div><div class="milestone-title">International Roaming</div><p class="milestone-desc">Expanded roaming partnerships to 150 countries. 30M subscribers crossed.</p></div>
+        </div>
+        <div class="milestone-item">
+          <div class="milestone-dot">🎯</div>
+          <div><div class="milestone-year">2025</div><div class="milestone-title">50M Milestone</div><p class="milestone-desc">Reached 50 million subscribers. Covering 1,200+ cities with 5G across India.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: AWARDS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-trophy-fill"></i> Recognition</div>
+      <h2 class="section-title">Award-Winning Excellence</h2>
+      <p class="section-subtitle">Our commitment to quality has earned us recognition from top industry bodies across India and the world.</p>
+    </div>
+    <div class="grid-2 reveal">
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="award-card"><div class="award-icon">🏆</div><div><div class="award-title">Best 5G Network of the Year</div><div class="award-org">TRAI Annual Excellence Awards</div></div><div class="award-year">2025</div></div>
+        <div class="award-card"><div class="award-icon">🥇</div><div><div class="award-title">Fastest Mobile Network — India</div><div class="award-org">Opensignal Mobile Experience Awards</div></div><div class="award-year">2025</div></div>
+        <div class="award-card"><div class="award-icon">⭐</div><div><div class="award-title">Customer Satisfaction Award</div><div class="award-org">JD Power Asia Pacific</div></div><div class="award-year">2024</div></div>
+        <div class="award-card"><div class="award-icon">🌱</div><div><div class="award-title">Green Telecom Leader</div><div class="award-org">CII–GBC Sustainability Awards</div></div><div class="award-year">2024</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="award-card"><div class="award-icon">💡</div><div><div class="award-title">Most Innovative Telecom Company</div><div class="award-org">Economic Times Telecom Awards</div></div><div class="award-year">2024</div></div>
+        <div class="award-card"><div class="award-icon">🔒</div><div><div class="award-title">Best Network Security</div><div class="award-org">DSCI Excellence Awards</div></div><div class="award-year">2024</div></div>
+        <div class="award-card"><div class="award-icon">🤝</div><div><div class="award-title">Best Enterprise Telecom Partner</div><div class="award-org">CIO100 India Awards</div></div><div class="award-year">2023</div></div>
+        <div class="award-card"><div class="award-icon">🎖️</div><div><div class="award-title">India's Fastest Growing Telecom</div><div class="award-org">Deloitte Fast 50 India</div></div><div class="award-year">2023</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="logo-icon">📶</div>
+          <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+        </a>
+        <p>Stackly Telecom — India's fastest growing 5G network, connecting millions with premium connectivity solutions.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-linkedin"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Mobile Plans</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Fiber Broadband</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Enterprise</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Roaming</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="about.html"><i class="bi bi-chevron-right"></i> About Us</a></li>
+        <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Careers</a></li>
+        <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Privacy Policy</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Terms of Service</a></li>
+        <li><a href="login.html"><i class="bi bi-chevron-right"></i> My Account</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <a href="index.html">Stackly Telecom Pvt. Ltd.</a> All rights reserved.</p>
+      <p>📶 Powered by <strong>Stackly Network</strong></p>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" id="back-to-top"><i class="bi bi-chevron-up"></i></button>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > 300); });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuClose = document.getElementById('menu-close');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  menuClose.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  const observer = new IntersectionObserver((e) => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

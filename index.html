@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly Telecom — India's fastest growing 5G telecom provider. Blazing internet, unlimited calls, OTT bundles, and enterprise solutions at unbeatable prices.">
+  <title>Stackly Telecom | India's #1 5G Network Provider</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-dark);
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11,12,16,0.9) 0%, rgba(138,43,226,0.12) 50%, rgba(11,12,16,0.95) 100%);
+    }
+    .hero-orb-1 {
+      position: absolute;
+      top: 10%; left: 5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(138,43,226,0.18), transparent 65%);
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      position: absolute;
+      bottom: 10%; right: 5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 65%);
+      pointer-events: none;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.2rem;
+      background: rgba(138,43,226,0.18);
+      border: 1px solid var(--primary);
+      border-radius: 25px;
+      color: var(--secondary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: glow-pulse 3s ease infinite;
+    }
+    .hero-badge i { font-size: 0.7rem; }
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+    }
+    .hero-title .gradient-text {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-typed-wrap {
+      display: block;
+      height: 1.2em;
+      overflow: hidden;
+      margin-bottom: 0.3rem;
+    }
+    #typed-text {
+      border-right: 3px solid var(--secondary);
+      padding-right: 4px;
+    }
+    .hero-desc {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-image {
+      position: relative;
+      animation: float 7s ease-in-out infinite;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      border: 2px solid rgba(138,43,226,0.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(138,43,226,0.15);
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: -12px; right: -12px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-xl);
+      z-index: -1;
+      opacity: 0.3;
+    }
+    .hero-floating-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: var(--glow-purple);
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero-pulse-rings {
+      position: absolute;
+      top: 30%;
+      right: -10px;
+    }
+    .pulse-ring {
+      position: absolute;
+      width: 60px; height: 60px;
+      border: 2px solid var(--secondary);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-ring 2.5s ease-out infinite;
+    }
+    .pulse-ring:nth-child(2) { animation-delay: 0.8s; }
+    .pulse-ring:nth-child(3) { animation-delay: 1.6s; }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ===== SECTIONS HELPERS ===== */
+    .text-center { text-align: center; }
+    .mb-0 { margin-bottom: 0 !important; }
+    .fw-600 { font-weight: 600; }
+
+    /* ===== NETWORK STRIP ===== */
+    .network-strip {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      padding: 0.7rem 0;
+      overflow: hidden;
+    }
+    .network-strip-track {
+      display: flex;
+      gap: 4rem;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+    .network-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ===== WHY CHOOSE ===== */
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-primary);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+    .why-card:hover::after { transform: scaleX(1); }
+    .why-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--glow-card); }
+    .why-icon {
+      width: 54px; height: 54px;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .why-title { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .why-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ===== APP SECTION ===== */
+    .app-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(138,43,226,0.06), rgba(0,212,255,0.03));
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .app-mockup {
+      position: relative;
+      text-align: center;
+      animation: float 6s ease-in-out infinite;
+    }
+    .app-mockup-img {
+      max-width: 280px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,212,255,0.08));
+      border-radius: 30px;
+      border: 2px solid rgba(138,43,226,0.3);
+      padding: 2rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(138,43,226,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .app-screen-icon { font-size: 5rem; }
+    .app-store-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.88rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .store-btn:hover { border-color: var(--primary); background: rgba(138,43,226,0.1); }
+    .store-btn i { font-size: 1.5rem; color: var(--secondary); }
+    .store-btn-text { text-align: left; }
+    .store-btn-sub { font-size: 0.7rem; color: var(--text-muted); }
+    .store-btn-name { font-weight: 700; }
+
+    /* ===== TESTIMONIALS CAROUSEL ===== */
+    .testimonials-section { padding: 6rem 0; background: var(--bg-dark); }
+    .testimonials-carousel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ===== BLOG SECTION ===== */
+    .blog-section { padding: 6rem 0; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* ===== PARTNERS ===== */
+    .partners-section { padding: 4rem 0; background: var(--bg-dark); }
+    .partners-section .section-tag { display: block; text-align: center; margin-bottom: 2rem; width: fit-content; margin-left: auto; margin-right: auto; }
+
+    /* ===== OFFERS SECTION ===== */
+    .offer-banner {
+      background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,212,255,0.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-banner::before {
+      content: '🎉';
+      font-size: 6rem;
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.15;
+    }
+    .offer-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .offer-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, rgba(138,43,226,0.12), rgba(0,212,255,0.06));
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(138,43,226,0.1), transparent 65%);
+      transform: translate(-50%, -50%);
+    }
+    .cta-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .cta-desc { color: var(--text-muted); max-width: 550px; margin: 0 auto 2.5rem; font-size: 1.05rem; line-height: 1.8; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-image { display: none; }
+      .testimonials-carousel { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .app-grid { grid-template-columns: 1fr; }
+      .coverage-strip-grid { grid-template-columns: 1fr; }
+      .network-visual-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .img-feature-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .photo-strip-grid { grid-template-columns: 1fr !important; }
+      .img-feature-grid.reverse { direction: ltr; }
+    }
+    @media (max-width: 600px) {
+      .offer-banner { padding: 1.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .coverage-img-box { height: 220px !important; }
+      .blog-card .blog-img img { height: 160px; }
+      .img-section-img { height: 220px !important; }
+    }
+
+    /* ===== IMAGE STYLES ===== */
+    .section-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      display: block;
+    }
+    .img-overlay-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .img-overlay-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .img-overlay-card:hover img { transform: scale(1.04); }
+    .img-overlay-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    }
+    .img-overlay-badge {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      z-index: 2;
+      background: rgba(10,10,20,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .img-feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .img-feature-grid.reverse { direction: rtl; }
+    .img-feature-grid.reverse > * { direction: ltr; }
+    .network-visual-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .img-section-img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+      display: block;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--border-light);
+    }
+    .blog-card .blog-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .blog-card .blog-img {
+      display: block;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">📶</div>
+      <div>
+        <span class="logo-text">Stackly</span>
+        <span class="logo-sub">Telecom</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="menu-close"><i class="bi bi-x"></i></button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" class="btn btn-outline">Sign In</a>
+  <a href="register.html" class="btn btn-primary">Get Started</a>
+</div>
+
+<!-- ===== SECTION 1: HERO ===== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" src="images/hero-bg.webp" alt="5G Network" onerror="this.style.display='none'">
+    <div class="hero-overlay"></div>
+    <div class="hero-orb-1"></div>
+    <div class="hero-orb-2"></div>
+  </div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="bi bi-stars"></i> India's #1 5G Network · 2025</div>
+        <h1 class="hero-title">
+          Connect to the
+          <span class="hero-typed-wrap">
+            <span class="gradient-text" id="typed-text">Future.</span>
+          </span>
+          Experience <span class="gradient-text">5G Speed</span>
+        </h1>
+        <p class="hero-desc">
+          Stackly Telecom brings you blazing-fast 5G connectivity, unlimited calls, and premium OTT entertainment — all in one plan. Join 50 million+ subscribers across India.
+        </p>
+        <div class="hero-buttons">
+          <a href="services.html" class="btn btn-primary btn-lg"><i class="bi bi-lightning-charge"></i> Explore Plans</a>
+          <a href="404.html" class="btn btn-outline btn-lg"><i class="bi bi-play-circle"></i> Watch How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">50M+</div>
+            <div class="hero-stat-label">Subscribers</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">99.9%</div>
+            <div class="hero-stat-label">Uptime</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">1200+</div>
+            <div class="hero-stat-label">Cities</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image reveal-right">
+        <img src="images/hero-phone.webp" alt="Stackly Mobile App" onerror="this.src=''; this.parentElement.innerHTML='<div style=\'width:100%;height:380px;background:linear-gradient(135deg,rgba(138,43,226,0.2),rgba(0,212,255,0.1));border-radius:20px;border:2px solid rgba(138,43,226,0.3);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem\'><span style=\'font-size:6rem\'>📱</span><span style=\'font-family:Orbitron,sans-serif;color:#00D4FF\'>Stackly App</span></div>'">
+        <div class="hero-floating-badge">⚡ 1Gbps 5G</div>
+        <div class="hero-pulse-rings">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NETWORK STRIP ===== -->
+<div class="network-strip">
+  <div class="network-strip-track">
+    <span class="network-strip-item"><i class="bi bi-lightning-charge-fill"></i> 5G Ultra Speed</span>
+    <span class="network-strip-item"><i class="bi bi-telephone-fill"></i> Unlimited Calls</span>
+    <span class="network-strip-item"><i class="bi bi-wifi"></i> Fiber Broadband</span>
+    <span class="network-strip-item"><i class="bi bi-shield-check-fill"></i> Enterprise Solutions</span>
+    <span class="network-strip-item"><i class="bi bi-globe2"></i> International Roaming</span>
+    <span class="network-strip-item"><i class="bi bi-tv-fill"></i> OTT Bundles</span>
+    <span class="network-strip-item"><i class="bi bi-lightning-charge-fill"></i> 5G Ultra Speed</span>
+    <span class="network-strip-item"><i class="bi bi-telephone-fill"></i> Unlimited Calls</span>
+    <span class="network-strip-item"><i class="bi bi-wifi"></i> Fiber Broadband</span>
+    <span class="network-strip-item"><i class="bi bi-shield-check-fill"></i> Enterprise Solutions</span>
+    <span class="network-strip-item"><i class="bi bi-globe2"></i> International Roaming</span>
+    <span class="network-strip-item"><i class="bi bi-tv-fill"></i> OTT Bundles</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: STATS ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-bar-chart-fill"></i> By the Numbers</div>
+      <h2 class="section-title">Trusted by Millions Across India</h2>
+      <p class="section-subtitle">Our network speaks for itself — consistent performance, nationwide coverage, and customer satisfaction.</p>
+    </div>
+    <div class="grid-4 reveal">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+        <div class="stat-number" data-target="50">0</div><span class="stat-number" style="font-size:2rem">M+</span>
+        <div class="stat-label">Active Subscribers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <div class="stat-number" data-target="1200">0</div><span class="stat-number" style="font-size:2rem">+</span>
+        <div class="stat-label">Cities Covered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-lightning-fill"></i></div>
+        <div class="stat-number" data-target="99">0</div><span class="stat-number" style="font-size:2rem">.9%</span>
+        <div class="stat-label">Network Uptime</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-award-fill"></i></div>
+        <div class="stat-number" data-target="48">0</div><span class="stat-number" style="font-size:2rem">+</span>
+        <div class="stat-label">Industry Awards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: PLANS ===== -->
+<section class="section" id="plans">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-grid-3x3-gap-fill"></i> Pricing</div>
+      <h2 class="section-title">Plans for Every Need</h2>
+      <p class="section-subtitle">Choose from our flexible plans — no hidden fees, no contracts. Upgrade or downgrade anytime.</p>
+    </div>
+
+    <!-- Special Offer Banner -->
+    <div class="offer-banner reveal">
+      <div>
+        <div class="offer-title">🎊 Independence Day Special — Save up to 40%!</div>
+        <div class="offer-desc">Limited time offer. Use code <strong style="color:var(--secondary)">STACK40</strong> at checkout. Expires in 3 days.</div>
+      </div>
+      <a href="404.html" class="btn btn-primary">Claim Offer</a>
+    </div>
+
+    <div class="grid-3 reveal">
+      <!-- Basic -->
+      <div class="plan-card">
+        <div class="plan-icon" style="background:rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.2);"><span>📡</span></div>
+        <div class="plan-name">Basic</div>
+        <div class="plan-price"><sup>₹</sup>199<sub>/mo</sub></div>
+        <ul class="plan-features">
+          <li><i class="bi bi-check-circle-fill check"></i> 2GB/Day Data</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited Local Calls</li>
+          <li><i class="bi bi-check-circle-fill check"></i> 100 SMS/Day</li>
+          <li><i class="bi bi-check-circle-fill check"></i> 4G Network Access</li>
+          <li><i class="bi bi-x-circle-fill cross"></i> 5G Access</li>
+          <li><i class="bi bi-x-circle-fill cross"></i> OTT Benefits</li>
+          <li><i class="bi bi-x-circle-fill cross"></i> International Roaming</li>
+        </ul>
+        <a href="register.html" class="btn btn-outline" style="width:100%;justify-content:center;">Choose Basic</a>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="plan-card featured">
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-icon" style="background:rgba(138,43,226,0.15);border-color:var(--primary);"><span>⚡</span></div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>₹</sup>499<sub>/mo</sub></div>
+        <ul class="plan-features">
+          <li><i class="bi bi-check-circle-fill check"></i> 3GB/Day Data + 5G</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited Calls (All Networks)</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited SMS</li>
+          <li><i class="bi bi-check-circle-fill check"></i> 5G Ultra Speed Access</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Netflix + Prime Included</li>
+          <li><i class="bi bi-check-circle-fill check"></i> 5GB Data Rollover</li>
+          <li><i class="bi bi-x-circle-fill cross"></i> International Roaming</li>
+        </ul>
+        <a href="register.html" class="btn btn-primary" style="width:100%;justify-content:center;">Choose Pro</a>
+      </div>
+
+      <!-- Ultra -->
+      <div class="plan-card">
+        <div class="plan-icon" style="background:rgba(255,107,53,0.1);border-color:rgba(255,107,53,0.2);"><span>🚀</span></div>
+        <div class="plan-name">Ultra</div>
+        <div class="plan-price"><sup>₹</sup>999<sub>/mo</sub></div>
+        <ul class="plan-features">
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited Data + 5G</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited Calls (Intl. included)</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Unlimited SMS</li>
+          <li><i class="bi bi-check-circle-fill check"></i> 5G + 1Gbps Speed</li>
+          <li><i class="bi bi-check-circle-fill check"></i> All OTT Platforms</li>
+          <li><i class="bi bi-check-circle-fill check"></i> International Roaming (25 countries)</li>
+          <li><i class="bi bi-check-circle-fill check"></i> Priority Customer Support</li>
+        </ul>
+        <a href="register.html" class="btn btn-secondary" style="width:100%;justify-content:center;">Choose Ultra</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: SERVICES HIGHLIGHTS ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-grid"></i> Services</div>
+      <h2 class="section-title">Everything You Need, Connected</h2>
+      <p class="section-subtitle">From personal mobile plans to enterprise-grade fiber solutions — Stackly covers every connectivity need.</p>
+    </div>
+
+    <!-- IMAGE FEATURE: 5G Tower -->
+    <div class="img-feature-grid reveal" style="margin-bottom:3rem;">
+      <div class="img-overlay-card" style="height:320px;">
+        <img src="images/tower-5g.webp" alt="Stackly 5G Tower" loading="lazy">
+        <div class="img-overlay-badge">📡 5G SA Network · 15,000+ Towers</div>
+      </div>
+      <div>
+        <div class="section-tag" style="margin-bottom:1rem;"><i class="bi bi-lightning-charge-fill"></i> 5G Infrastructure</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:1.4rem;margin-bottom:1rem;line-height:1.3;">India's Most Advanced <span class="gradient-text">5G Network</span></h3>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem;">Stackly's 5G SA (Standalone) network delivers true gigabit mobile speeds across 1,200+ cities. Our 15,000+ towers ensure you're always connected — whether in a metro or a tier-2 city.</p>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Up to 1 Gbps download speeds</span></div>
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Sub-5ms ultra-low latency</span></div>
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Nationwide 5G coverage in 2025</span></div>
+        </div>
+        <a href="404.html" class="btn btn-primary">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="why-choose-grid reveal">
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(138,43,226,0.15);color:var(--primary);"><i class="bi bi-lightning-charge-fill" style="font-size:1.5rem"></i></div>
+        <div class="why-title">5G Ultra-Speed</div>
+        <p class="why-desc">Experience download speeds up to 1Gbps with our cutting-edge 5G SA (Standalone) network — the fastest in India.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(0,212,255,0.15);color:var(--secondary);"><i class="bi bi-router-fill" style="font-size:1.5rem"></i></div>
+        <div class="why-title">Fiber Broadband</div>
+        <p class="why-desc">True fiber-to-the-home with speeds from 100Mbps to 1Gbps. Perfect for remote work, gaming, and 4K streaming.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(255,107,53,0.15);color:var(--accent);"><i class="bi bi-building-fill" style="font-size:1.5rem"></i></div>
+        <div class="why-title">Enterprise Solutions</div>
+        <p class="why-desc">Dedicated leased lines, SD-WAN, and managed connectivity for businesses of all sizes. SLA-backed uptime guarantee.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(0,200,100,0.15);color:#00c864;"><i class="bi bi-globe2" style="font-size:1.5rem"></i></div>
+        <div class="why-title">International Roaming</div>
+        <p class="why-desc">Stay connected in 150+ countries with affordable roaming packs. Activate instantly from the Stackly app.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(138,43,226,0.15);color:var(--primary);"><i class="bi bi-tv-fill" style="font-size:1.5rem"></i></div>
+        <div class="why-title">OTT Entertainment</div>
+        <p class="why-desc">Netflix, Prime Video, Disney+, Hotstar, Sony LIV, Zee5, and more — all bundled with select plans at no extra cost.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Learn More <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(0,212,255,0.15);color:var(--secondary);"><img src="images/icon-support.svg" alt="Support" style="width:32px;"></div>
+        <div class="why-title">24/7 Support</div>
+        <p class="why-desc">Dedicated support via chat, call, and email. Our AI-powered assistant resolves 80% of queries in under 60 seconds.</p>
+        <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Know More <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: WHY CHOOSE US ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-trophy-fill"></i> Why Stackly?</div>
+      <h2 class="section-title">The Stackly Advantage</h2>
+      <p class="section-subtitle">We don't just sell connectivity — we deliver a premium experience that keeps you always ahead.</p>
+    </div>
+    <div class="network-visual-grid reveal" style="margin-bottom:4rem;">
+      <div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Network Coverage</span><span>99.9%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-width="99"></div></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>5G Speed Performance</span><span>96%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-width="96"></div></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Customer Satisfaction</span><span>94%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-width="94"></div></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span>Network Reliability</span><span>98%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-width="98"></div></div>
+        </div>
+        <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="about.html" class="btn btn-primary">Learn About Us</a>
+          <a href="contact.html" class="btn btn-outline">Talk to an Expert</a>
+        </div>
+      </div>
+      <!-- Network Coverage Map Image -->
+      <div class="img-overlay-card" style="height:360px;">
+        <img src="images/network-map.webp" alt="Stackly Network Coverage Map" loading="lazy">
+        <div class="img-overlay-badge">🗺️ 1,200+ Cities · 28 States</div>
+      </div>
+    </div>
+
+    <!-- Image Feature: Enterprise -->
+    <div class="img-feature-grid reverse reveal">
+      <div>
+        <div class="section-tag" style="margin-bottom:1rem;"><i class="bi bi-building-fill"></i> Enterprise Grade</div>
+        <h3 style="font-family:'Orbitron',sans-serif;font-size:1.3rem;margin-bottom:1rem;line-height:1.3;">Powering <span class="gradient-text">India's Businesses</span></h3>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem;">From startups to Fortune 500 companies — Stackly's enterprise network is trusted by 50,000+ businesses across India for dedicated bandwidth, SD-WAN, and 24/7 NOC support.</p>
+        <div class="feature-box" style="margin-bottom:0.8rem;"><div style="display:flex;gap:1rem;align-items:flex-start;"><div class="feature-icon" style="flex-shrink:0;"><i class="bi bi-award-fill"></i></div><div><div class="feature-title">Award-Winning Network</div><p class="feature-desc">Ranked #1 in speed and reliability by TRAI for 3 consecutive years (2022–2025).</p></div></div></div>
+        <div class="feature-box" style="margin-bottom:0.8rem;"><div style="display:flex;gap:1rem;align-items:flex-start;"><div class="feature-icon" style="flex-shrink:0;"><i class="bi bi-lock-fill"></i></div><div><div class="feature-title">Military-Grade Security</div><p class="feature-desc">End-to-end encrypted calls and data. Your privacy is our top priority.</p></div></div></div>
+        <div class="feature-box"><div style="display:flex;gap:1rem;align-items:flex-start;"><div class="feature-icon" style="flex-shrink:0;"><i class="bi bi-currency-rupee"></i></div><div><div class="feature-title">Best Value Plans</div><p class="feature-desc">Transparent pricing with no hidden charges. Get more for less with Stackly bundles.</p></div></div></div>
+        <a href="services.html" class="btn btn-primary" style="margin-top:2rem;">Explore Enterprise <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="img-overlay-card" style="height:420px;">
+        <img src="images/enterprise-office.webp" alt="Enterprise office using Stackly" loading="lazy">
+        <div class="img-overlay-badge">🏢 50,000+ Business Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: APP DOWNLOAD ===== -->
+<section class="app-section">
+  <div class="container">
+    <div class="app-grid">
+      <div class="reveal-left">
+        <div class="section-tag"><i class="bi bi-phone-fill"></i> Mobile App</div>
+        <h2 class="section-title" style="text-align:left;margin-bottom:1rem;">Manage Everything From Your Phone</h2>
+        <p style="color:var(--text-muted);margin-bottom:2rem;line-height:1.8;">
+          The Stackly app puts complete control in your hands. Recharge, track usage, manage plans, pay bills, and get instant support — all from one beautifully designed app.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem;">
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Real-time data usage tracking</span></div>
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Instant plan upgrade in 1 tap</span></div>
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>Bill payment & auto-recharge</span></div>
+          <div style="display:flex;align-items:center;gap:0.8rem;"><i class="bi bi-check-circle-fill" style="color:#00c864"></i> <span>AI support chatbot — 24/7</span></div>
+        </div>
+        <div class="app-store-btns">
+          <a href="404.html" class="store-btn">
+            <i class="bi bi-google-play"></i>
+            <div class="store-btn-text">
+              <div class="store-btn-sub">GET IT ON</div>
+              <div class="store-btn-name">Google Play</div>
+            </div>
+          </a>
+          <a href="404.html" class="store-btn">
+            <i class="bi bi-apple"></i>
+            <div class="store-btn-text">
+              <div class="store-btn-sub">DOWNLOAD ON THE</div>
+              <div class="store-btn-name">App Store</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Real App UI Image -->
+      <div class="reveal-right">
+        <div class="img-overlay-card" style="height:420px;">
+          <img src="images/mobile-app.webp" alt="Stackly App UI" loading="lazy">
+          <div class="img-overlay-badge">⭐ 4.8 Rating · 2.1M Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISUAL PHOTO STRIP ===== -->
+<section class="section section-alt" style="padding:4rem 0;">
+  <div class="container">
+    <div class="section-header reveal" style="margin-bottom:2rem;">
+      <div class="section-tag"><i class="bi bi-images"></i> Life on Stackly</div>
+      <h2 class="section-title">Millions of Happy Connections</h2>
+      <p class="section-subtitle">From families streaming together to enterprises running seamlessly — Stackly powers it all.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="reveal photo-strip-grid">
+      <div class="img-overlay-card" style="height:380px;">
+        <img src="images/family-internet.webp" alt="Indian family using Stackly internet" loading="lazy">
+        <div class="img-overlay-badge">👨‍👩‍👧 For Every Home · Plans from ₹199</div>
+      </div>
+      <div class="img-overlay-card" style="height:380px;">
+        <img src="images/customer-support.webp" alt="Stackly 24/7 customer support team" loading="lazy">
+        <div class="img-overlay-badge">🎧 24/7 Support · 60s Resolution</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="register.html" class="btn btn-primary btn-lg"><i class="bi bi-lightning-charge"></i> Join 50M+ Happy Customers</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 7: TESTIMONIALS ===== -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-chat-quote-fill"></i> Testimonials</div>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-subtitle">Real experiences from real people — see why millions trust Stackly for their connectivity needs.</p>
+    </div>
+    <div class="testimonials-carousel reveal">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Switched from Jio to Stackly and the difference is night and day. My 5G speeds are consistently above 400Mbps. The Netflix bundle made it even better!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#8A2BE2,#00D4FF);">RK</div>
+          <div>
+            <div class="author-name">Rahul Kumar</div>
+            <div class="author-role">Software Engineer, Bangalore</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The Stackly fiber connection at my office is rock-solid. 99.9% uptime is not just a claim — we've had zero downtime in 8 months. Excellent enterprise support too!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#FF6B35,#FFD700);">PS</div>
+          <div>
+            <div class="author-name">Priya Sharma</div>
+            <div class="author-role">CTO, TechStart Pvt. Ltd.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★☆</div>
+        <p class="testimonial-text">"The Ultra plan is worth every rupee. International roaming in Dubai was seamless and affordable. The app is beautifully designed — so easy to manage everything."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#00D4FF,#00c864);">AM</div>
+          <div>
+            <div class="author-name">Aisha Mohammed</div>
+            <div class="author-role">Business Consultant, Mumbai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 8: BLOG PREVIEW ===== -->
+<section class="blog-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-newspaper"></i> Latest News</div>
+      <h2 class="section-title">Stay in the Know</h2>
+      <p class="section-subtitle">Tech trends, telecom news, and Stackly updates — all in one place.</p>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="images/young-users.webp" alt="Young 5G users" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.4s ease;">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span class="blog-tag">5G Technology</span>
+            <span>July 10, 2025</span>
+          </div>
+          <h3 class="blog-title">Stackly Launches 5G SA Network in 50 New Cities</h3>
+          <p class="blog-excerpt">India's telecom landscape transformed as Stackly expands its standalone 5G network, bringing gigabit speeds to tier-2 cities...</p>
+          <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="images/enterprise-office.webp" alt="Enterprise connectivity" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.4s ease;">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span class="blog-tag">Enterprise</span>
+            <span>July 5, 2025</span>
+          </div>
+          <h3 class="blog-title">How Stackly's SD-WAN is Transforming Indian Businesses</h3>
+          <p class="blog-excerpt">Enterprise connectivity gets a major upgrade with Stackly's new SD-WAN solution — cutting IT costs by 40% for mid-sized companies...</p>
+          <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="images/fiber-cable.webp" alt="Fiber optic network" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.4s ease;">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span class="blog-tag">Security</span>
+            <span>July 1, 2025</span>
+          </div>
+          <h3 class="blog-title">Stackly Introduces Zero-Trust Network Security for All Users</h3>
+          <p class="blog-excerpt">Protecting your digital life is now easier with Stackly's built-in zero-trust security framework for all mobile and fiber customers...</p>
+          <a href="404.html" class="btn btn-outline btn-sm" style="margin-top:1rem;">Read More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="blog.html" class="btn btn-primary btn-lg">View All Articles <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 9: PARTNERS ===== -->
+<section class="partners-section section-alt">
+  <div class="container">
+    <div class="section-tag"><i class="bi bi-handshake-fill"></i> Technology Partners</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <div class="partner-logo"><span>⚡</span> Ericsson</div>
+        <div class="partner-logo"><span>🌐</span> Nokia</div>
+        <div class="partner-logo"><span>🔷</span> Qualcomm</div>
+        <div class="partner-logo"><span>🟥</span> Huawei</div>
+        <div class="partner-logo"><span>🔵</span> Intel</div>
+        <div class="partner-logo"><span>🍎</span> Apple</div>
+        <div class="partner-logo"><span>🤖</span> Google</div>
+        <div class="partner-logo"><span>🟨</span> Samsung</div>
+        <div class="partner-logo"><span>🔶</span> AWS</div>
+        <div class="partner-logo"><span>🔷</span> Microsoft</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="partner-logo"><span>⚡</span> Ericsson</div>
+        <div class="partner-logo"><span>🌐</span> Nokia</div>
+        <div class="partner-logo"><span>🔷</span> Qualcomm</div>
+        <div class="partner-logo"><span>🟥</span> Huawei</div>
+        <div class="partner-logo"><span>🔵</span> Intel</div>
+        <div class="partner-logo"><span>🍎</span> Apple</div>
+        <div class="partner-logo"><span>🤖</span> Google</div>
+        <div class="partner-logo"><span>🟨</span> Samsung</div>
+        <div class="partner-logo"><span>🔶</span> AWS</div>
+        <div class="partner-logo"><span>🔷</span> Microsoft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal">
+      <h2 class="cta-title">Ready to <span style="background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Experience the Future</span>?</h2>
+      <p class="cta-desc">Join 50 million+ subscribers who trust Stackly for their connectivity. Get started in minutes with our hassle-free onboarding.</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="btn btn-primary btn-lg"><i class="bi bi-person-plus-fill"></i> Create Free Account</a>
+        <a href="contact.html" class="btn btn-outline btn-lg"><i class="bi bi-telephone-fill"></i> Talk to Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="logo-icon">📶</div>
+          <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+        </a>
+        <p>Stackly Telecom — India's fastest growing 5G network. Connecting millions with lightning-fast internet, unlimited calls, and premium entertainment bundles.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Mobile Plans</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Fiber Broadband</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Enterprise Solutions</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> International Roaming</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> OTT Bundles</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> IoT Connectivity</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html"><i class="bi bi-chevron-right"></i> About Us</a></li>
+          <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog & News</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Careers</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Press Room</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Investors</a></li>
+          <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Track Order</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Network Status</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Privacy Policy</a></li>
+          <li><a href="404.html"><i class="bi bi-chevron-right"></i> Terms of Service</a></li>
+          <li><a href="login.html"><i class="bi bi-chevron-right"></i> My Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <a href="index.html">Stackly Telecom Pvt. Ltd.</a> All rights reserved.</p>
+      <p style="display:flex;align-items:center;gap:0.5rem;"><span>📶</span> Powered by <strong>Stackly Network</strong> | CIN: U64200MH2015PTC000000</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+
+<script>
+  // ===== NAVBAR SCROLL =====
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    backToTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ===== MOBILE MENU =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuClose = document.getElementById('menu-close');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  menuClose.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+
+  // ===== TYPED TEXT =====
+  const words = ['Future.', 'Speed.', 'Freedom.', 'Beyond.'];
+  let wordIndex = 0, charIndex = 0, isDeleting = false;
+  const typedEl = document.getElementById('typed-text');
+  function typeText() {
+    const word = words[wordIndex];
+    if (isDeleting) {
+      typedEl.textContent = word.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typedEl.textContent = word.substring(0, charIndex + 1);
+      charIndex++;
+    }
+    if (!isDeleting && charIndex === word.length) {
+      setTimeout(() => { isDeleting = true; }, 2000);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+    setTimeout(typeText, isDeleting ? 80 : 120);
+  }
+  typeText();
+
+  // ===== SCROLL REVEAL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // ===== COUNTER ANIMATION =====
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const target = +e.target.dataset.target;
+        let current = 0;
+        const increment = target / 60;
+        const timer = setInterval(() => {
+          current = Math.min(current + increment, target);
+          e.target.textContent = Math.floor(current);
+          if (current >= target) clearInterval(timer);
+        }, 30);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // ===== PROGRESS BARS =====
+  const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.progress-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.reveal').forEach(el => progressObserver.observe(el));
+</script>
+</body>
+</html>

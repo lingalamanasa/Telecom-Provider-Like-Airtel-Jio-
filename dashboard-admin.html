@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Stackly Telecom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.7rem;
+      background: rgba(255,107,53,0.2);
+      border: 1px solid rgba(255,107,53,0.3);
+      border-radius: 12px;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .kpi-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+    .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-primary); }
+
+    .kpi-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .kpi-value { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .kpi-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.8rem; }
+    .kpi-change { font-size: 0.8rem; font-weight: 700; }
+    .kpi-change.up { color: #00c864; }
+    .kpi-change.down { color: #ff4444; }
+    .kpi-period { font-size: 0.75rem; color: var(--text-dim); }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 0.4rem; flex-shrink: 0; }
+    .activity-text { font-size: 0.85rem; flex: 1; }
+    .activity-text .highlight { font-weight: 600; color: var(--text); }
+    .activity-time { font-size: 0.75rem; color: var(--text-dim); }
+
+    .tower-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; }
+    .tower-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 1rem; text-align: center; transition: var(--transition); }
+    .tower-card:hover { border-color: var(--primary); }
+    .tower-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .tower-city { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .tower-stat { font-size: 0.72rem; color: var(--text-muted); }
+    .tower-status { width: 8px; height: 8px; border-radius: 50%; margin: 0.4rem auto 0; }
+    .tower-status.online { background: #00c864; box-shadow: 0 0 6px rgba(0,200,100,0.5); }
+    .tower-status.warning { background: #FFD700; }
+
+    .revenue-summary { display: flex; gap: 2rem; padding: 1rem; background: rgba(138,43,226,0.06); border-radius: var(--radius); margin-bottom: 1rem; flex-wrap: wrap; }
+    .rev-item { flex: 1; text-align: center; }
+    .rev-value { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .rev-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+
+<!-- ===== SPLASH SCREEN ===== -->
+<div class="splash-screen" id="splash">
+  <div class="splash-logo">
+    <div class="splash-icon">🛡️</div>
+    <div class="splash-title">Stackly</div>
+    <div class="splash-sub">Admin Control Center</div>
+    <div class="splash-bar"><div class="splash-fill"></div></div>
+  </div>
+</div>
+
+<div class="dash-wrapper">
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">📶</div>
+      <div>
+        <div class="logo-text">Stackly</div>
+        <div style="font-size:0.65rem;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;">Admin Panel</div>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sidebar-avatar" style="background:linear-gradient(135deg,#ff6b35,#FFD700);">—</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebar-name">Loading...</div>
+        <div class="sidebar-user-role" style="color:var(--accent)">Administrator</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Overview</div>
+      <a href="dashboard-admin.html" class="sidebar-link active" onclick="setSidebarActive(this)"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-bar-chart-line-fill"></i> Analytics</a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-currency-rupee"></i> Revenue</a>
+      <div class="sidebar-section">Management</div>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-people-fill"></i> User Management <span class="sidebar-badge">50M</span></a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-broadcast-pin"></i> Network Ops</a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-grid-fill"></i> Plan Management</a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-receipt-cutoff"></i> Billing & Finance</a>
+      <div class="sidebar-section">Operations</div>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-ticket-perforated-fill"></i> Support Tickets <span class="sidebar-badge">142</span></a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-file-earmark-bar-graph-fill"></i> Reports</a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-bell-fill"></i> System Alerts <span class="sidebar-badge" style="background:#ff4444">5</span></a>
+      <a href="404.html" class="sidebar-link" onclick="setSidebarActive(this)"><i class="bi bi-gear-fill"></i> System Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="handleLogout()">
+        <i class="bi bi-box-arrow-left"></i> Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dash-main">
+    <!-- Topbar -->
+    <div class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+        <div class="dash-page-title">Admin Control Center</div>
+        <span class="admin-badge"><i class="bi bi-shield-fill"></i> Admin</span>
+      </div>
+      <div class="dash-topbar-right">
+        <div class="topbar-icon-btn" title="Critical Alerts" style="border-color:rgba(255,68,68,0.3);">
+          <i class="bi bi-exclamation-triangle-fill" style="color:#ff4444"></i>
+          <span class="notif-dot" style="background:#ff4444"></span>
+        </div>
+        <div class="topbar-icon-btn" title="Notifications">
+          <i class="bi bi-bell-fill"></i>
+          <span class="notif-dot"></span>
+        </div>
+        <div class="topbar-avatar" id="topbar-avatar" style="background:linear-gradient(135deg,#ff6b35,#FFD700);">—</div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- Welcome Banner -->
+      <div class="dash-welcome" id="dashboard" style="border-color:rgba(255,107,53,0.3);background:linear-gradient(135deg,rgba(255,107,53,0.1),rgba(255,215,0,0.04));">
+        <div>
+          <div class="dash-welcome-title">🛡️ Welcome, Administrator <span id="welcome-name">there</span></div>
+          <p>Here is your complete network operations overview. Stackly is running at full capacity across all regions.</p>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">Admin session · <span id="current-time"></span> · All systems operational</p>
+        </div>
+        <div class="dash-welcome-actions">
+          <button class="btn btn-primary btn-sm" onclick="window.location='404.html'"><i class="bi bi-broadcast-pin"></i> Network Monitor</button>
+          <button class="btn btn-outline btn-sm" onclick="window.location='404.html'"><i class="bi bi-file-earmark-text"></i> Generate Report</button>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem;" id="analytics">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Subscribers</div>
+          <div class="kpi-value">50.2M</div>
+          <div class="kpi-footer">
+            <span class="kpi-change up"><i class="bi bi-arrow-up"></i> +1.2M this month</span>
+            <span class="kpi-period">vs last month</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Monthly Revenue</div>
+          <div class="kpi-value">₹412Cr</div>
+          <div class="kpi-footer">
+            <span class="kpi-change up"><i class="bi bi-arrow-up"></i> +18.4%</span>
+            <span class="kpi-period">YoY growth</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Network Uptime</div>
+          <div class="kpi-value">99.97%</div>
+          <div class="kpi-footer">
+            <span class="kpi-change up"><i class="bi bi-check-circle"></i> Excellent</span>
+            <span class="kpi-period">Last 30 days</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Active Towers</div>
+          <div class="kpi-value">15,247</div>
+          <div class="kpi-footer">
+            <span class="kpi-change up"><i class="bi bi-arrow-up"></i> 247 new</span>
+            <span class="kpi-period">This quarter</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg. Speed (5G)</div>
+          <div class="kpi-value">498Mbps</div>
+          <div class="kpi-footer">
+            <span class="kpi-change up"><i class="bi bi-arrow-up"></i> +12%</span>
+            <span class="kpi-period">vs last month</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Open Tickets</div>
+          <div class="kpi-value">142</div>
+          <div class="kpi-footer">
+            <span class="kpi-change down"><i class="bi bi-arrow-down"></i> -38 resolved</span>
+            <span class="kpi-period">Today</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 1: Revenue Chart + User Activity -->
+      <div class="dash-row-3" id="revenue">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="dash-card-title">💰 Revenue Overview — 2025</div>
+            <div class="badge badge-green">+18.4% YoY</div>
+          </div>
+          <div class="revenue-summary">
+            <div class="rev-item"><div class="rev-value">₹412Cr</div><div class="rev-label">July 2025</div></div>
+            <div class="rev-item"><div class="rev-value">₹348Cr</div><div class="rev-label">July 2024</div></div>
+            <div class="rev-item"><div class="rev-value">₹4,820Cr</div><div class="rev-label">Annual Projection</div></div>
+          </div>
+          <div class="bar-chart" style="height:160px;">
+            <div class="bar-col"><div class="bar" style="height:55%"></div><div class="bar-label">Jan</div></div>
+            <div class="bar-col"><div class="bar" style="height:60%"></div><div class="bar-label">Feb</div></div>
+            <div class="bar-col"><div class="bar" style="height:52%"></div><div class="bar-label">Mar</div></div>
+            <div class="bar-col"><div class="bar" style="height:68%"></div><div class="bar-label">Apr</div></div>
+            <div class="bar-col"><div class="bar" style="height:75%"></div><div class="bar-label">May</div></div>
+            <div class="bar-col"><div class="bar" style="height:80%"></div><div class="bar-label">Jun</div></div>
+            <div class="bar-col"><div class="bar" style="height:100%;background:linear-gradient(90deg,var(--accent),#FFD700);"></div><div class="bar-label" style="color:var(--secondary)">Jul ✓</div></div>
+          </div>
+          <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;">
+            <div style="text-align:center;padding:0.8rem;background:rgba(138,43,226,0.08);border-radius:var(--radius);">
+              <div style="font-size:0.72rem;color:var(--text-muted);">Mobile Plans</div>
+              <div style="font-weight:700;color:var(--secondary);">68%</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem;background:rgba(0,212,255,0.08);border-radius:var(--radius);">
+              <div style="font-size:0.72rem;color:var(--text-muted);">Fiber</div>
+              <div style="font-weight:700;color:var(--secondary);">22%</div>
+            </div>
+            <div style="text-align:center;padding:0.8rem;background:rgba(255,107,53,0.08);border-radius:var(--radius);">
+              <div style="font-size:0.72rem;color:var(--text-muted);">Enterprise</div>
+              <div style="font-weight:700;color:var(--accent);">10%</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title">⚡ System Alerts</div>
+              <span class="badge" style="background:rgba(255,68,68,0.15);color:#ff4444;border:1px solid rgba(255,68,68,0.3);">5 Active</span>
+            </div>
+            <div class="notif-list">
+              <div class="notif-item" style="border-color:rgba(255,68,68,0.15);">
+                <div class="notif-dot-icon" style="background:#ff4444;box-shadow:0 0 8px rgba(255,68,68,0.4)"></div>
+                <div class="notif-body"><div class="notif-msg">Tower #MH-2847 offline — Nashik East. Maintenance dispatched.</div><div class="notif-time">10 mins ago</div></div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-dot-icon orange"></div>
+                <div class="notif-body"><div class="notif-msg">5G congestion at Mumbai-BKC. Traffic management active.</div><div class="notif-time">32 mins ago</div></div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-dot-icon cyan"></div>
+                <div class="notif-body"><div class="notif-msg">Scheduled maintenance window tonight 2–4 AM IST — Pune cluster.</div><div class="notif-time">1 hour ago</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title">📊 Plan Distribution</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.8rem;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem;"><span>Ultra Plan</span><span style="color:var(--secondary)">31.2%</span></div>
+                <div class="usage-track"><div class="usage-fill cyan" style="width:31.2%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem;"><span>Pro Plan ⭐</span><span style="color:var(--secondary)">48.6%</span></div>
+                <div class="usage-track"><div class="usage-fill" style="width:48.6%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem;"><span>Basic Plan</span><span style="color:var(--secondary)">20.2%</span></div>
+                <div class="usage-track"><div class="usage-fill orange" style="width:20.2%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: User Management + Network Status -->
+      <div class="dash-row" id="users">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="dash-card-title">👥 Recent Users</div>
+            <button class="btn btn-outline btn-sm" onclick="window.location='404.html'">View All</button>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr><th>User</th><th>Plan</th><th>Status</th><th>Revenue</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="user-row"><div class="user-mini-avatar">RK</div><div><div style="font-weight:600;font-size:0.88rem;">Rahul Kumar</div><div style="font-size:0.75rem;color:var(--text-muted);">+91 98765 43210</div></div></div></td>
+                <td><span class="badge badge-purple">Pro</span></td>
+                <td><span class="badge badge-green">Active</span></td>
+                <td>₹499/mo</td>
+                <td><button class="btn btn-outline btn-sm" onclick="window.location='404.html'">View</button></td>
+              </tr>
+              <tr>
+                <td><div class="user-row"><div class="user-mini-avatar" style="background:linear-gradient(135deg,#FF6B35,#FFD700);">PS</div><div><div style="font-weight:600;font-size:0.88rem;">Priya Sharma</div><div style="font-size:0.75rem;color:var(--text-muted);">+91 87654 32109</div></div></div></td>
+                <td><span class="badge badge-cyan">Ultra</span></td>
+                <td><span class="badge badge-green">Active</span></td>
+                <td>₹999/mo</td>
+                <td><button class="btn btn-outline btn-sm" onclick="window.location='404.html'">View</button></td>
+              </tr>
+              <tr>
+                <td><div class="user-row"><div class="user-mini-avatar" style="background:linear-gradient(135deg,#00c864,#00D4FF);">AM</div><div><div style="font-weight:600;font-size:0.88rem;">Arjun Mehta</div><div style="font-size:0.75rem;color:var(--text-muted);">+91 76543 21098</div></div></div></td>
+                <td><span class="badge badge-purple">Pro</span></td>
+                <td><span class="badge badge-orange">Expired</span></td>
+                <td>₹499/mo</td>
+                <td><button class="btn btn-primary btn-sm" onclick="window.location='404.html'">Renew</button></td>
+              </tr>
+              <tr>
+                <td><div class="user-row"><div class="user-mini-avatar" style="background:linear-gradient(135deg,#8A2BE2,#00D4FF);">SL</div><div><div style="font-weight:600;font-size:0.88rem;">Sneha Lal</div><div style="font-size:0.75rem;color:var(--text-muted);">+91 65432 10987</div></div></div></td>
+                <td><span class="badge badge-purple">Basic</span></td>
+                <td><span class="badge badge-green">Active</span></td>
+                <td>₹199/mo</td>
+                <td><button class="btn btn-outline btn-sm" onclick="window.location='404.html'">View</button></td>
+              </tr>
+              <tr>
+                <td><div class="user-row"><div class="user-mini-avatar" style="background:linear-gradient(135deg,#FF6B35,#8A2BE2);">VR</div><div><div style="font-weight:600;font-size:0.88rem;">Vijay Reddy</div><div style="font-size:0.75rem;color:var(--text-muted);">+91 54321 09876</div></div></div></td>
+                <td><span class="badge badge-cyan">Ultra</span></td>
+                <td><span class="badge badge-green">Active</span></td>
+                <td>₹999/mo</td>
+                <td><button class="btn btn-outline btn-sm" onclick="window.location='404.html'">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Network Ops -->
+        <div class="dash-card" id="network">
+          <div class="dash-card-header">
+            <div class="dash-card-title">📡 Network Operations</div>
+            <span class="badge badge-green">Operational</span>
+          </div>
+          <div style="display:flex;flex-direction:column;">
+            <div class="network-status-item">
+              <div><div class="net-region">5G Core — National</div><div class="net-uptime">99.98% · 15,247 towers</div></div>
+              <div class="net-status-dot online"></div>
+            </div>
+            <div class="network-status-item">
+              <div><div class="net-region">Fiber Infrastructure</div><div class="net-uptime">99.95% · 2.8M homes</div></div>
+              <div class="net-status-dot online"></div>
+            </div>
+            <div class="network-status-item">
+              <div><div class="net-region">International Gateway</div><div class="net-uptime">99.99% · 150 countries</div></div>
+              <div class="net-status-dot online"></div>
+            </div>
+            <div class="network-status-item">
+              <div><div class="net-region">Tower #MH-2847 — Nashik</div><div class="net-uptime">⚠️ Maintenance in progress</div></div>
+              <div class="net-status-dot warning"></div>
+            </div>
+            <div class="network-status-item">
+              <div><div class="net-region">IMS / VoLTE Core</div><div class="net-uptime">99.99% · HD Voice active</div></div>
+              <div class="net-status-dot online"></div>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;">
+            <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="window.location='404.html'"><i class="bi bi-broadcast-pin"></i> Open NOC Dashboard</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Tower Status + Support Tickets -->
+      <div class="dash-row">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="dash-card-title">🗼 Top City Tower Status</div>
+            <button class="btn btn-outline btn-sm" onclick="window.location='404.html'">Full Map</button>
+          </div>
+          <div class="tower-grid">
+            <div class="tower-card"><div class="tower-icon">🏙️</div><div class="tower-city">Mumbai</div><div class="tower-stat">2,480 towers</div><div class="tower-status online"></div></div>
+            <div class="tower-card"><div class="tower-icon">🏛️</div><div class="tower-city">Delhi</div><div class="tower-stat">2,210 towers</div><div class="tower-status online"></div></div>
+            <div class="tower-card"><div class="tower-icon">💻</div><div class="tower-city">Bangalore</div><div class="tower-stat">1,890 towers</div><div class="tower-status online"></div></div>
+            <div class="tower-card"><div class="tower-icon">🔷</div><div class="tower-city">Hyderabad</div><div class="tower-stat">1,340 towers</div><div class="tower-status online"></div></div>
+            <div class="tower-card"><div class="tower-icon">🌆</div><div class="tower-city">Chennai</div><div class="tower-stat">1,120 towers</div><div class="tower-status online"></div></div>
+            <div class="tower-card"><div class="tower-icon">🏢</div><div class="tower-city">Nashik</div><div class="tower-stat">240 towers</div><div class="tower-status warning"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-card" id="tickets">
+          <div class="dash-card-header">
+            <div class="dash-card-title">🎫 Recent Support Tickets</div>
+            <span class="badge badge-orange">142 Open</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:#ff4444;box-shadow:0 0 6px rgba(255,68,68,0.4)"></div>
+            <div class="activity-text"><span class="highlight">TKT-8821:</span> Network outage complaint — Nashik East zone.</div>
+            <div class="activity-time">8 min ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent)"></div>
+            <div class="activity-text"><span class="highlight">TKT-8820:</span> Billing discrepancy — Priya Sharma (Ultra plan double charge).</div>
+            <div class="activity-time">45 min ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--secondary)"></div>
+            <div class="activity-text"><span class="highlight">TKT-8819:</span> 5G speed drop complaint — Mumbai, Andheri West.</div>
+            <div class="activity-time">1.5 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:#00c864"></div>
+            <div class="activity-text"><span class="highlight">TKT-8818:</span> ✅ Resolved — SIM activation issue for Arjun M.</div>
+            <div class="activity-time">2 hrs ago</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:#00c864"></div>
+            <div class="activity-text"><span class="highlight">TKT-8817:</span> ✅ Resolved — Port-in delay for Sneha Lal.</div>
+            <div class="activity-time">3 hrs ago</div>
+          </div>
+          <div style="margin-top:1rem;">
+            <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;" onclick="window.location='404.html'">View All Tickets <i class="bi bi-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Admin Actions -->
+      <div class="dash-card" style="margin-bottom:1rem;">
+        <div class="dash-card-header">
+          <div class="dash-card-title">⚙️ Admin Quick Actions</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.8rem;">
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-person-plus-fill"></i> Add User</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-broadcast-pin"></i> Tower Status</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-grid-fill"></i> Manage Plans</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-file-earmark-bar-graph"></i> Gen. Report</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-send-fill"></i> Mass SMS</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-cpu-fill"></i> System Health</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-lock-fill"></i> Security Audit</button>
+          <button class="quick-action-btn" onclick="window.location='404.html'"><i class="bi bi-cloud-download-fill"></i> Backup Data</button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 0;border-top:1px solid var(--border-light);margin-top:1rem;flex-wrap:wrap;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <div class="logo-icon" style="width:28px;height:28px;font-size:0.9rem;">📶</div>
+          <span style="font-family:'Orbitron',sans-serif;font-size:0.85rem;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Stackly Telecom</span>
+          <span class="admin-badge">Admin v2.4.1</span>
+        </div>
+        <span style="font-size:0.8rem;color:var(--text-muted);">© 2025 Stackly Telecom Pvt. Ltd. · Admin Access Only</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // Splash
+  setTimeout(() => { document.getElementById('splash').classList.add('hidden'); }, 2200);
+
+  // User
+  function loadUser() {
+    const name = sessionStorage.getItem('stackly_user') || 'Administrator';
+    const initial = name.charAt(0).toUpperCase();
+    document.getElementById('welcome-name').textContent = name;
+    document.getElementById('sidebar-name').textContent = name;
+    document.getElementById('sidebar-avatar').textContent = initial;
+    document.getElementById('topbar-avatar').textContent = initial;
+  }
+  loadUser();
+
+  // Time
+  function updateTime() {
+    const now = new Date();
+    document.getElementById('current-time').textContent = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+  }
+  updateTime();
+
+  // Sidebar toggle
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebar-overlay').classList.toggle('open');
+  }
+
+  // Set active sidebar link (highlight & optionally close mobile sidebar)
+  function setSidebarActive(el) {
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+    if (window.innerWidth < 768) toggleSidebar();
+  }
+
+  // Logout
+  function handleLogout() {
+    if (confirm('Are you sure you want to sign out of the admin panel?')) {
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+  }
+</script>
+</body>
+</html>

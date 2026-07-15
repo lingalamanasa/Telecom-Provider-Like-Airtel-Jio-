@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Stackly Telecom — Reach our support team, find our offices, or get help with your account. Available 24/7.">
+  <title>Contact Us | Stackly Telecom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      transition: var(--transition);
+    }
+    .contact-info-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+    .contact-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+    .contact-value { font-weight: 700; margin-bottom: 0.2rem; }
+    .contact-detail { font-size: 0.85rem; color: var(--text-muted); }
+
+    .office-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    .office-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .office-city { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 0.5rem; }
+    .office-type { font-size: 0.78rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+    .office-detail { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    .support-channel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .support-channel:hover { border-color: var(--secondary); transform: translateY(-4px); box-shadow: var(--glow-cyan); }
+    .support-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .support-title { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .support-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .support-availability { font-size: 0.78rem; color: #00c864; font-weight: 600; }
+
+    /* ===== REAL MAP STYLES ===== */
+    .map-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      box-shadow: 0 8px 40px rgba(138,43,226,0.12);
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 420px;
+      display: block;
+      border: none;
+      filter: grayscale(40%) invert(1) hue-rotate(185deg) saturate(0.7) brightness(0.85);
+    }
+    .map-overlay-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(10,10,20,0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      pointer-events: none;
+    }
+    .map-overlay-badge i { color: var(--primary); font-size: 1rem; }
+    .map-pin-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #00c864;
+      box-shadow: 0 0 8px rgba(0,200,100,0.8);
+      animation: pulse 1.8s ease infinite;
+    }
+
+    /* ===== MOBILE RESPONSIVE FIXES ===== */
+    @media (max-width: 768px) {
+      /* Contact section: stack form below info cards */
+      .contact-info-card { padding: 1.2rem; gap: 0.8rem; }
+      .contact-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+      .contact-value { font-size: 0.95rem; }
+      .contact-detail { font-size: 0.8rem; }
+
+      /* Form row: single column on mobile */
+      .form-row-2 { grid-template-columns: 1fr !important; }
+
+      /* Glass card: reduce padding on mobile */
+      .glass-card { padding: 1.5rem !important; }
+
+      /* Office grid: 2 cols on mobile */
+      .office-grid-mobile { grid-template-columns: 1fr 1fr !important; }
+      .office-card { padding: 1.2rem; }
+      .office-city { font-size: 0.9rem; }
+      .office-detail { font-size: 0.8rem; }
+
+      /* Support channels: 2×2 on mobile */
+      .support-grid-mobile { grid-template-columns: 1fr 1fr !important; }
+      .support-channel { padding: 1.2rem; }
+      .support-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+      .support-title { font-size: 0.78rem; }
+
+      /* Map height on mobile */
+      .map-wrapper iframe { height: 280px; }
+      .map-overlay-badge { font-size: 0.72rem; padding: 0.5rem 0.7rem; }
+
+      /* FAQ: tighter on mobile */
+      .faq-item { margin-bottom: 0; }
+      .faq-question { font-size: 0.88rem; padding: 1rem; }
+      .faq-answer p { font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      .office-grid-mobile { grid-template-columns: 1fr !important; }
+      .support-grid-mobile { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">📶</div>
+      <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="menu-close"><i class="bi bi-x"></i></button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+  <a href="login.html" class="btn btn-outline">Sign In</a><a href="register.html" class="btn btn-primary">Get Started</a>
+</div>
+
+<!-- SECTION 1: HERO -->
+<div class="page-hero-bg"></div>
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content reveal">
+      <div class="section-tag"><i class="bi bi-headset"></i> Contact Us</div>
+      <h1 class="page-hero-title">We're Always Here for You</h1>
+      <p class="section-subtitle mb-0">Have a question, feedback, or need help with your plan? Our dedicated support team is available 24/7 — reach us any way you prefer.</p>
+      <div class="breadcrumb" style="margin-top:1rem;">
+        <a href="index.html">Home</a><i class="bi bi-chevron-right"></i><span>Contact</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CONTACT INFO + FORM -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <!-- Contact Details -->
+      <div class="reveal-left">
+        <div class="section-tag" style="margin-bottom:1.5rem;"><i class="bi bi-info-circle-fill"></i> Get in Touch</div>
+        <h2 class="section-title" style="text-align:left;margin-bottom:2rem;">Contact Information</h2>
+        <div style="display:flex;flex-direction:column;gap:1.2rem;">
+          <div class="contact-info-card">
+            <div class="contact-icon" style="background:rgba(138,43,226,0.15);color:var(--primary)"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <div class="contact-label">Customer Care</div>
+              <div class="contact-value">1800-STACKLY (Free)</div>
+              <div class="contact-detail">Available 24/7 · Hindi, English & 10 more languages</div>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-icon" style="background:rgba(0,212,255,0.15);color:var(--secondary)"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div class="contact-label">Email Support</div>
+              <div class="contact-value">support@stackly.in</div>
+              <div class="contact-detail">Response within 2 hours on business days</div>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-icon" style="background:rgba(0,200,100,0.15);color:#00c864"><i class="bi bi-chat-dots-fill"></i></div>
+            <div>
+              <div class="contact-label">Live Chat</div>
+              <div class="contact-value">In-App & Website Chat</div>
+              <div class="contact-detail">AI-powered instant responses · Human handoff available</div>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-icon" style="background:rgba(255,107,53,0.15);color:var(--accent)"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <div class="contact-label">Headquarters</div>
+              <div class="contact-value">Stackly Tower, BKC, Mumbai</div>
+              <div class="contact-detail">Level 42, Bandra Kurla Complex, Mumbai - 400051</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal-right">
+        <div class="glass-card" style="padding:2.5rem;">
+          <h3 style="font-family:'Orbitron',sans-serif;font-size:1.2rem;margin-bottom:0.5rem;">Send Us a Message</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:2rem;">We'll get back to you within 24 hours.</p>
+          <form onsubmit="event.preventDefault();window.location='404.html'">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="form-row-2">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="Rahul">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Kumar">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control" placeholder="rahul@example.com">
+            </div>
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="tel" class="form-control" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select class="form-control">
+                <option value="">Select a topic</option>
+                <option>Plan Enquiry</option>
+                <option>Technical Support</option>
+                <option>Billing Issue</option>
+                <option>Enterprise Sales</option>
+                <option>Complaint</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea class="form-control" placeholder="Tell us how we can help you..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="bi bi-send-fill"></i> Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: OFFICES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-building-fill"></i> Our Offices</div>
+      <h2 class="section-title">Find Us Across India</h2>
+      <p class="section-subtitle">With 28 offices across India, there's always a Stackly team near you.</p>
+    </div>
+    <div class="grid-4 reveal office-grid-mobile">
+      <div class="office-card">
+        <div class="office-city">Mumbai 🏙️</div>
+        <div class="office-type">Headquarters</div>
+        <p class="office-detail">Stackly Tower, BKC<br>Level 42, Mumbai - 400051<br>📞 022-6789-0001</p>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Delhi NCR 🏛️</div>
+        <div class="office-type">Regional Office</div>
+        <p class="office-detail">Cyber City, Gurugram<br>Block A, Sector 24 - 122002<br>📞 011-6789-0002</p>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Bangalore 💻</div>
+        <div class="office-type">Tech Hub</div>
+        <p class="office-detail">Embassy Tech Village<br>Outer Ring Road - 560103<br>📞 080-6789-0003</p>
+      </div>
+      <div class="office-card">
+        <div class="office-city">Hyderabad 🔷</div>
+        <div class="office-type">Enterprise Office</div>
+        <p class="office-detail">HITEC City Tower<br>Madhapur - 500081<br>📞 040-6789-0004</p>
+      </div>
+    </div>
+
+    <!-- REAL GOOGLE MAP -->
+    <div style="margin-top:2rem;" class="reveal">
+      <div style="margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
+        <div class="section-tag" style="margin-bottom:0;"><i class="bi bi-geo-alt-fill"></i> Find Our HQ</div>
+        <span style="font-size:0.85rem;color:var(--text-muted);">Bandra Kurla Complex, Mumbai — Stackly Telecom Headquarters</span>
+      </div>
+      <div class="map-wrapper">
+        <!-- Google Maps embed: BKC Mumbai -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.009985944296!2d72.86535687520637!3d19.06662808211136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8c9ebc3e5db%3A0x37af4da3c31e16c0!2sBandra%20Kurla%20Complex%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1720000000000!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Stackly Telecom HQ Location — BKC Mumbai"
+        ></iframe>
+        <div class="map-overlay-badge">
+          <i class="bi bi-geo-alt-fill"></i>
+          <div class="map-pin-dot"></div>
+          <span>Stackly HQ — BKC, Mumbai 400051</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SUPPORT CHANNELS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-tools"></i> Support Channels</div>
+      <h2 class="section-title">Choose Your Support Method</h2>
+      <p class="section-subtitle">Multiple ways to reach us — pick the one that suits you best.</p>
+    </div>
+    <div class="grid-4 reveal support-grid-mobile">
+      <div class="support-channel" onclick="window.location='404.html'">
+        <div class="support-icon">📞</div>
+        <div class="support-title">Phone Support</div>
+        <div class="support-desc">Call 1800-STACKLY for immediate help with any issue.</div>
+        <div class="support-availability">🟢 Available 24/7</div>
+      </div>
+      <div class="support-channel" onclick="window.location='404.html'">
+        <div class="support-icon">💬</div>
+        <div class="support-title">Live Chat</div>
+        <div class="support-desc">Chat instantly with our AI bot or a human agent.</div>
+        <div class="support-availability">🟢 Available 24/7</div>
+      </div>
+      <div class="support-channel" onclick="window.location='404.html'">
+        <div class="support-icon">📧</div>
+        <div class="support-title">Email Support</div>
+        <div class="support-desc">Detailed issues best handled via email with full documentation.</div>
+        <div class="support-availability">🟡 Reply within 2 hours</div>
+      </div>
+      <div class="support-channel" onclick="window.location='404.html'">
+        <div class="support-icon">🏪</div>
+        <div class="support-title">Visit a Store</div>
+        <div class="support-desc">Find your nearest Stackly experience centre for in-person support.</div>
+        <div class="support-availability">🟡 Mon–Sat, 9am–8pm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag"><i class="bi bi-question-circle-fill"></i> FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Quick answers to the most common questions our customers ask.</p>
+    </div>
+    <div style="max-width:800px;margin:0 auto;" class="reveal">
+      <div class="faq-item">
+        <div class="faq-question">How do I port my number to Stackly? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>Simply SMS "PORT &lt;your 10-digit mobile number&gt;" to 1900 from your current number. You'll receive a Unique Porting Code (UPC). Visit any Stackly store or apply online using this code. The process takes 3–7 working days.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What documents do I need for a new SIM? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>You need one valid government ID (Aadhaar, Passport, Voter ID, or Driving Licence) and one address proof document. Aadhaar alone is sufficient for both identity and address. The entire process can be done online via the Stackly app with video KYC.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I upgrade from 4G to 5G? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>To use 5G, you need a 5G-compatible device and a Stackly Pro or Ultra plan. If you're on Basic, simply upgrade your plan via the app. If your SIM is older than 2 years, you may need a free SIM replacement, which can be requested in the app.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I use my plan while roaming internationally? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>International roaming must be activated. Ultra plan users get 25-country roaming included. For all other plans, purchase a roaming pack via the Stackly app before travelling. Packs start at ₹599 for 5 days in popular destinations.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I pay my bill online? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>You can pay via the Stackly app (UPI, Cards, Net Banking, Wallets), our website, or at any Stackly store. We also support auto-pay — set it up once and your plan renews automatically without any action from your side.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What is Stackly's refund policy? <i class="bi bi-chevron-down"></i></div>
+        <div class="faq-answer"><p>For any billing error or duplicate charge, we offer a full refund within 7 business days. Plan recharges are non-refundable once activated. For disputes, contact our support team with your transaction ID and we will investigate immediately.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="logo-icon">📶</div>
+          <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+        </a>
+        <p>India's fastest growing 5G network — connecting millions with premium connectivity.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-twitter-x"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="404.html" class="social-link"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+        <li><a href="about.html"><i class="bi bi-chevron-right"></i> About</a></li>
+        <li><a href="services.html"><i class="bi bi-chevron-right"></i> Services</a></li>
+        <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Help Center</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Network Status</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Privacy Policy</a></li>
+        <li><a href="404.html"><i class="bi bi-chevron-right"></i> Terms of Service</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="tel:1800STACKLY"><i class="bi bi-telephone"></i> 1800-STACKLY</a></li>
+        <li><a href="mailto:support@stackly.in"><i class="bi bi-envelope"></i> support@stackly.in</a></li>
+        <li><a href="login.html"><i class="bi bi-person"></i> My Account</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Stackly Telecom Pvt. Ltd.</p>
+      <p>📶 Powered by Stackly Network</p>
+    </div>
+  </div>
+</footer>
+<button class="back-to-top" id="back-to-top"><i class="bi bi-chevron-up"></i></button>
+<script>
+  window.addEventListener('scroll', () => document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300));
+  document.getElementById('back-to-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+  document.getElementById('hamburger').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('mobile-menu').classList.toggle('open'); });
+  document.getElementById('menu-close').addEventListener('click', () => { document.getElementById('hamburger').classList.remove('open'); document.getElementById('mobile-menu').classList.remove('open'); });
+  const observer = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible'); }), {threshold:0.1});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => observer.observe(el));
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>

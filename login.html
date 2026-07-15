@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your Stackly Telecom account — manage your plan, pay bills, track usage, and more.">
+  <title>Sign In | Stackly Telecom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { min-height: 100vh; overflow-x: hidden; }
+
+    .auth-wrapper {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Left panel */
+    .auth-left {
+      background: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-left::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(138,43,226,0.12), transparent 65%);
+    }
+    .auth-left::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08), transparent 65%);
+    }
+
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .auth-left-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .auth-headline {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .auth-headline span {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .auth-left-desc {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .auth-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .auth-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 0.9rem 1.2rem;
+      transition: var(--transition);
+    }
+
+    .auth-feature:hover { border-color: var(--primary); background: rgba(138,43,226,0.06); }
+    .auth-feature-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .auth-feature-text { font-size: 0.9rem; font-weight: 500; }
+
+    .auth-stats {
+      display: flex;
+      gap: 2rem;
+    }
+    .auth-stat-num { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 800; background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .auth-stat-label { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Right panel */
+    .auth-right {
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 3rem;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .auth-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .auth-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Role selector */
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .role-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.2rem;
+      background: rgba(255,255,255,0.03);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-muted);
+    }
+
+    .role-btn.selected {
+      border-color: var(--primary);
+      background: rgba(138,43,226,0.1);
+      color: var(--text);
+      box-shadow: var(--glow-purple);
+    }
+
+    .role-btn:hover:not(.selected) { border-color: var(--border); background: rgba(255,255,255,0.05); }
+    .role-btn i { font-size: 1.8rem; }
+    .role-btn-name { font-weight: 700; font-size: 0.9rem; }
+    .role-btn-desc { font-size: 0.72rem; color: var(--text-muted); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+
+    .show-pwd-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0 0.5rem;
+      transition: var(--transition);
+    }
+    .show-pwd-btn:hover { color: var(--secondary); }
+
+    .form-group { position: relative; }
+    .input-icon-wrap { position: relative; }
+    .input-icon-wrap i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); font-size: 0.95rem; pointer-events: none; }
+    .input-icon-wrap .form-control { padding-left: 2.8rem; }
+    .input-icon-wrap .show-pwd-btn { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); }
+
+    .auth-link { color: var(--secondary); text-decoration: none; font-weight: 600; }
+    .auth-link:hover { text-decoration: underline; }
+
+    .auth-footer-text { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted); }
+    .auth-footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 0.8rem; }
+    .auth-footer-links a { color: var(--text-dim); transition: var(--transition); }
+    .auth-footer-links a:hover { color: var(--secondary); }
+
+    @media (max-width: 900px) {
+      .auth-wrapper { grid-template-columns: 1fr; }
+      .auth-left { display: none; }
+      .auth-right { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .auth-right { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div class="auth-brand">
+      <div class="logo-icon">📶</div>
+      <div><span class="logo-text">Stackly</span><span class="logo-sub">Telecom</span></div>
+    </div>
+    <div class="auth-left-content">
+      <div class="section-tag" style="margin-bottom:1rem;"><i class="bi bi-stars"></i> India's #1 5G Network</div>
+      <div class="auth-headline">
+        Welcome Back to <span>Stackly</span> — Your Digital World
+      </div>
+      <p class="auth-left-desc">Sign in to manage your plan, track your usage in real time, pay bills instantly, and access all of Stackly's premium features.</p>
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📊</div>
+          <div class="auth-feature-text">Real-time data usage & network statistics</div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">💳</div>
+          <div class="auth-feature-text">Instant plan upgrade & bill payment</div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔔</div>
+          <div class="auth-feature-text">Usage alerts & renewal notifications</div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🤖</div>
+          <div class="auth-feature-text">24/7 AI support from your dashboard</div>
+        </div>
+      </div>
+      <div class="auth-stats">
+        <div class="auth-stat"><div class="auth-stat-num">50M+</div><div class="auth-stat-label">Happy Customers</div></div>
+        <div class="auth-stat"><div class="auth-stat-num">99.9%</div><div class="auth-stat-label">Uptime</div></div>
+        <div class="auth-stat"><div class="auth-stat-num">4.8★</div><div class="auth-stat-label">App Rating</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+      <h1 class="auth-title">Sign In</h1>
+      <p class="auth-subtitle">Welcome back! Please enter your credentials and select your account type to continue.</p>
+
+      <!-- Role Selector -->
+      <div class="role-selector" id="role-selector">
+        <button class="role-btn selected" data-role="user" onclick="selectRole('user')">
+          <i class="bi bi-person-circle"></i>
+          <span class="role-btn-name">Customer</span>
+          <span class="role-btn-desc">Manage my plan</span>
+        </button>
+        <button class="role-btn" data-role="admin" onclick="selectRole('admin')">
+          <i class="bi bi-shield-lock-fill"></i>
+          <span class="role-btn-name">Admin</span>
+          <span class="role-btn-desc">Manage network</span>
+        </button>
+      </div>
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Mobile Number or Email</label>
+          <div class="input-icon-wrap">
+            <i class="bi bi-person-fill"></i>
+            <input type="text" class="form-control" id="login-identifier" placeholder="e.g. 9876543210 or email@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display:flex;justify-content:space-between;align-items:center;">
+            Password
+            <a href="404.html" class="auth-link" style="font-size:0.82rem;">Forgot password?</a>
+          </label>
+          <div class="input-icon-wrap">
+            <i class="bi bi-lock-fill"></i>
+            <input type="password" class="form-control" id="login-password" placeholder="Enter your password" required>
+            <button type="button" class="show-pwd-btn" onclick="togglePwd('login-password', this)"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem;">
+          <input type="checkbox" id="remember" style="accent-color:var(--primary);width:16px;height:16px;">
+          <label for="remember" style="font-size:0.88rem;cursor:pointer;color:var(--text-muted);">Remember me on this device</label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;">
+          <i class="bi bi-box-arrow-in-right"></i> Sign In to My Account
+        </button>
+      </form>
+
+      <div class="divider">or sign in with</div>
+      <div style="display:flex;gap:0.8rem;">
+        <button class="btn btn-outline" style="flex:1;justify-content:center;" onclick="window.location='404.html'"><i class="bi bi-google" style="color:#EA4335"></i> Google</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center;" onclick="window.location='404.html'"><i class="bi bi-apple"></i> Apple</button>
+      </div>
+
+      <div class="auth-footer-text">
+        New to Stackly? <a href="register.html" class="auth-link">Create a free account</a>
+      </div>
+      <div class="auth-footer-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="contact.html">Help & Support</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedRole = 'user';
+
+  function selectRole(role) {
+    selectedRole = role;
+    document.querySelectorAll('.role-btn').forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.role === role);
+    });
+  }
+
+  function togglePwd(id, btn) {
+    const input = document.getElementById(id);
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    btn.innerHTML = isPassword ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const identifier = document.getElementById('login-identifier').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    if (!identifier || !password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    // Extract name from identifier for welcome message
+    let userName = identifier.split('@')[0]; // e.g. "rahul" from "rahul@gmail.com"
+    userName = userName.replace(/[0-9]/g, '').replace(/_/g, ' ').trim();
+    if (!userName) userName = 'Valued Customer';
+    // Capitalize
+    userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+
+    // Store user info
+    sessionStorage.setItem('stackly_user', userName);
+    sessionStorage.setItem('stackly_role', selectedRole);
+
+    // Redirect based on role
+    if (selectedRole === 'admin') {
+      window.location.href = 'dashboard-admin.html';
+    } else {
+      window.location.href = 'dashboard-user.html';
+    }
+  }
+</script>
+</body>
+</html>
